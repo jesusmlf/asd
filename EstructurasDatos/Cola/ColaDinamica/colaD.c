@@ -129,7 +129,17 @@ void vaciarCola(Cola* c,int *error){
     }
     c->tam = 0;
     c->fin = NULL;
-    //c.inicio ya es null;
+    //free(c);
+}
+
+void copiarCola(Cola *c, int *error, Cola *c_copy){
+    struct Nodo *aux;
+    aux = c->inicio;
+    for(int i=0;i<c->tam;i++){
+        aux = aux->sig;
+        encolar(c_copy,error,aux->elemento);
+    }
+
 }
 
 void destruirCola(Cola *c, int *error){
