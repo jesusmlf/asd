@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
-#include <stdlib.h>
+#include <stdlib.h>#include <string.h>
 
 
 /*
@@ -30,7 +30,7 @@ typedef struct{
 }Cola;
 
 void initialize(Cola *c, int *error);
-void encolar(Cola* c,int *error);
+void encolar(Cola* c,int *error, Elemento elemento);
 Elemento desencolar(Cola *c, int *error);
 bool isEmpty(Cola c,int *error);
 Elemento consultarFrente(Cola c,int *error);
@@ -39,4 +39,5 @@ Elemento consultarN_Elemento(Cola c,int *error,int indice);
 void recorrerCola(Cola c, int *error);
 int size(Cola c,int *error);
 void vaciarCola(Cola* c,int *error);
+void copiarCola(Cola* c, int *error, Cola *c_copy);
 void destruirCola(Cola *c, int *error);
