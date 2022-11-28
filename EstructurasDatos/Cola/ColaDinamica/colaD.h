@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
-#include <stdlib.h>#include <string.h>
+#include <stdlib.h>
+#include <string.h>
 
 
 /*
@@ -41,3 +42,7 @@ int size(Cola c,int *error);
 void vaciarCola(Cola* c,int *error);
 void copiarCola(Cola* c, int *error, Cola *c_copy);
 void destruirCola(Cola *c, int *error);
+//void ordenarCola(struct Nodo *nodo,int *error);
+void ordenarColaGzu(Cola *c,int *error);
+bool numInARR(int* arr, int num, int tam);
+void inicioOperacion(int argc, char** argv);
