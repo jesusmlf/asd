@@ -45,4 +45,6 @@ void destruirCola(Cola *c, int *error);
 //void ordenarCola(struct Nodo *nodo,int *error);
 void ordenarColaGzu(Cola *c,int *error);
 bool numInARR(int* arr, int num, int tam);
+int Buscarelemento(Cola *c,int *error, int datoBuscar);
+
 void inicioOperacion(int argc, char** argv);

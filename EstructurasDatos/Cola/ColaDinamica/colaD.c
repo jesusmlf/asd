@@ -258,6 +258,19 @@ void ordenarColaGzu(Cola *c,int *error){
     }
 }
 
+int Buscarelemento(Cola *c,int *error, int datoBuscar){
+    //Retorna la posición del elemento a buscar
+    struct Nodo *aux = c->inicio;
+    for(int i=0;i<c->tam;i++){
+        if(datoBuscar == aux->elemento.valor){
+            return i;
+        }
+        aux = aux->sig;
+    }
+    printf("\nNo se encontro el elemento");
+    return -1;
+}
+
 void inicioOperacion(int argc, char** argv){
     printf("Inicio");
     Cola* c = (Cola*) malloc(sizeof(Cola));
@@ -291,4 +304,7 @@ void inicioOperacion(int argc, char** argv){
 //
     //copiarCola(c,&error,c_copia);
     //recorrerCola(*c_copia,&error);
+
+    int pos = Buscarelemento(c,&error,65);
+    printf("\n%d",pos);
 }
