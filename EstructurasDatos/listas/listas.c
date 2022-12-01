@@ -1,46 +1,70 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdbool.h>
 
+typedef int Dato;
 
-typedef struct{
-    int valor;
-}Dato;
-
-struct Nodo{
-    Dato dato;
-    struct Nodo* sig;
+struct Nodo
+{
+    struct Nodo* siguiente;
     int pos;
+    Dato dato;
 };
 
-typedef struct Nodo *Lista;
-Lista *l;
+typedef struct Nodo* cabecera;
+void InsertarporIzq(cabecera *l, int *error,Dato datou);
+struct Nodo * CrearrNodo(cabecera *l, int *error, Dato datou);
 
-void insertarIzq(Lista *l, int *error, Dato dato){
-    struct Nodo* nuevo = (struct Nodo*) malloc(sizeof(struct Nodo));
-    if(nuevo == NULL){
-        perror("No se pudo reservar memoria para el nuevo nodo");
-    }
+int main(int argc, char const *argv[])
+{
+    cabecera *l ;
+    int error =0;
 
-    if(*l == NULL){
-        *l = nuevo;
-        nuevo->pos = 0;
-        nuevo->sig = NULL;
-    }else{
-        struct Nodo* aux = *l;
-        aux = *l;
-        *l = nuevo;
-        nuevo-
-        nuevo->pos = 0;
-    }
-    *error = 0;
+    InsertarporIzq(l,&error,5);
+    InsertarporIzq(l,&error,6);
+    InsertarporIzq(l,&error,7);
+
+
+    printf("el numero %d esta en pos : %d\n",(*l)->dato,(*l)->pos);
+    printf("el numero %d esta en pos : %d\n",(*l)->siguiente->dato,(*l)->siguiente->pos);
+    printf("el numero %d esta en pos : %d\n",(*l)->siguiente->siguiente->dato,(*l)->siguiente->siguiente->pos);
+
+    
+
+    return 0;
 }
 
-int main(int argc, char** argv){
-    Lista *l;
-    printf("Inicio");
-    int error = 0;
-    Dato datoInsertar;
-    datoInsertar.valor = 10;
-    insertarIzq(l,&error,datoInsertar);
+struct Nodo * CrearrNodo(cabecera *l, int *error, Dato datou){
 
+    struct  Nodo* new = (struct Nodo*)malloc(sizeof(struct Nodo));
+
+    if (new == NULL)
+    {
+        perror("no se pudo crear el nodo\n");
+    }
+    else{
+        new->dato=datou;
+        new->siguiente=NULL;
+    }
+    return new;
+}
+
+void InsertarporIzq(cabecera *l, int *error,Dato datou){
+    struct Nodo* porinsert = CrearrNodo(l,error,datou);
+    if (*l == NULL)
+    {
+        printf("l esta vacia \n");
+        porinsert->pos=0;
+        *l = porinsert;
+    }
+    else{
+        porinsert->siguiente=*l;
+        porinsert->pos=0;
+        *l=porinsert;
+        
+        for (struct Nodo* actual = (*l)->siguiente; actual!=NULL; actual=actual->siguiente)
+        {
+            actual->pos=(actual->pos)+1;
+        }
+    }
 }
