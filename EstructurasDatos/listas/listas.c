@@ -15,6 +15,7 @@ typedef struct Nodo{
 void insertarIzq(lista *l, int *error, Dato dato);
 void insertarDer(lista *l, int *error, Dato dato);
 void insertarNpos(lista *l, int *error, Dato dato, int pos);
+Dato extraerIzq(lista *l, int *error);
 
 void insertarIzq(lista *l, int *error, Dato dato){
     struct Nodo *new = (struct Nodo*) malloc(sizeof(struct Nodo));
@@ -31,7 +32,6 @@ void insertarIzq(lista *l, int *error, Dato dato){
             aux->pos += 1;
         }
     }
-
     *l = new;
 }
 
@@ -99,10 +99,51 @@ void insertarNpos(lista *l, int *error, Dato dato, int pos){
     }
 }
 
+Dato extraerDer(lista *l, int *error){
+    if(l == NULL){
+        perror("Lista vacia");
+        *error = -1;
+    }else{
+        Dato extraer;
+        struct Nodo* aux = *l;
+
+        while (aux->sig != NULL){
+            aux = aux->sig;
+        }
+        extraer = aux->dato;
+        
+        free(aux);
+        aux = NULL;
+        return extraer;
+    }
+}
+
+Dato extraerIzq(lista *l, int *error){
+    Dato extraer = (*l)->dato;
+    struct Nodo* aux = (*l); //Recorrer la lista y actualizar pos
+
+    (*l) = (*l)->sig;
+
+    aux->sig = NULL;
+    free(aux);
+
+    aux = (*l);
+
+    while(aux->sig != NULL){
+        aux = aux->sig;
+        aux->pos -= 1; // aux-> pos = aux-> pos + 1 
+    }
+    return extraer;
+    }
+
+void recorrerLista(lista *l, int *error){
+
+}
+
 int main(){
     lista *l;
-    struct Nodo* vacio = NULL;
-    *l = vacio; //Inicializamos la cola vacia
+    //struct Nodo* vacio = NULL;
+    *l = NULL; //Inicializamos la cola vacia
     int error = 0;
 
     Dato nuevoDato = 10;
@@ -130,6 +171,9 @@ int main(){
     
     printf("\nValor primer dato: %d Posicion %d",(*l)->dato,(*l)->pos);
     printf("\nValor segundo dato: %d Posicion %d",(*l)->sig->dato,(*l)->sig->pos);
+    Dato dato= extraerDer(l,&error);
+    printf("\nDato extraido: %d",dato);
     //printf("\nValor tercer dato: %d Posicion %d",(*l)->sig->sig->dato,(*l)->sig->sig->pos);
     //printf("\nValor cuarto dato: %d Posicion %d",(*l)->sig->sig->sig->dato,(*l)->sig->sig->sig->pos);
+
 }
