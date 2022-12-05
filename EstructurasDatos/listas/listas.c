@@ -12,9 +12,14 @@ typedef struct Nodo{
     int pos;
 }Nodo;
 
+void initLista(lista *l, int *error);
 void insertarIzq(lista *l, int *error, Dato dato);
 void insertarDer(lista *l, int *error, Dato dato);
 void insertarNpos(lista *l, int *error, Dato dato, int pos);
+
+void initLista(lista *l, int *error){
+    return
+}
 
 void insertarIzq(lista *l, int *error, Dato dato){
     struct Nodo *new = (struct Nodo*) malloc(sizeof(struct Nodo));
@@ -23,15 +28,16 @@ void insertarIzq(lista *l, int *error, Dato dato){
     new->dato = dato;
     new->sig = *l;
     new->pos = 0;
+    
     aux = new;
 
-    if(*l != NULL){
+    if(*l != NULL){ //Si no esta vacia
         while (aux->sig != NULL){
             aux = aux->sig;
             aux->pos += 1;
         }
     }
-
+    
     *l = new;
 }
 
