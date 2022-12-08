@@ -104,7 +104,6 @@ Dato extraerN(lista *l,int *error,int pos){
         perror("No hay elementos en la lista");
         *error = -2;
     }else{
-        
         if(pos == 0){
             //El dato a extraer es el primer elemento en la lista
             datoExtraido = extraerIzq(l,error);
