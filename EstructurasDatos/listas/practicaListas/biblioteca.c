@@ -93,6 +93,7 @@ void recorrerLista(lista *l, int *error){
         aux = aux->sig;
     }
 }
+
 Expresion extraerIzq(lista *l,int *error);
 Expresion extraerDer(lista *l,int *error);
 Expresion extraerN(lista *l,int *error, int pos);
