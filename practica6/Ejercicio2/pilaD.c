@@ -14,9 +14,9 @@ Pila* crearPila(int* error){
     }
 }
 
-void apilar(Pila *p, int* error, struct Nodo datoUsuario){
-    struct Nodo* nodoNuevo = (struct Nodo*) malloc(sizeof(struct Nodo));
-    if (nodoNuevo == NULL){
+void apilar(Pila *p, int* error, struct NodoPila datoUsuario){
+    struct NodoPila* NodoPilaNuevo = (struct NodoPila*) malloc(sizeof(struct NodoPila));
+    if (NodoPilaNuevo == NULL){
         perror("No hay memoria para almacenar tu informacion");
         *error = -1;
     }
@@ -24,25 +24,25 @@ void apilar(Pila *p, int* error, struct Nodo datoUsuario){
         puts("Pila nula");
     }
     else{
-        nodoNuevo->elemento = datoUsuario.elemento;
-        nodoNuevo->nodoAnterior = p->cima;
-        p->cima = nodoNuevo;
+        NodoPilaNuevo->elemento = datoUsuario.elemento;
+        NodoPilaNuevo->NodoPilaAnterior = p->cima;
+        p->cima = NodoPilaNuevo;
         p->cursor++;
         *error = 0;
     }
     return;
 }
 
-void desapilar(Pila *p, int* error,struct Nodo *datoExtraido){
+void desapilar(Pila *p, int* error,struct NodoPila *datoExtraido){
     if(isEmpty(*p,error)){
         puts("No hay elementos para desapilar");
         *error = -3;
     }else{
         //printf("\nDesapilando");
-        struct Nodo* aux = p->cima;
+        struct NodoPila* aux = p->cima;
         datoExtraido->elemento = aux->elemento;
-        p->cima = aux->nodoAnterior;
-        aux->nodoAnterior = NULL;
+        p->cima = aux->NodoPilaAnterior;
+        aux->NodoPilaAnterior = NULL;
         p->cursor--;
         free(aux);
         *error = 0;
@@ -69,7 +69,7 @@ void consultarCima(Pila p, int* error){
 }
 void vaciarPila(Pila *p, int* error){
     while (!isEmpty(*p,error)){
-        struct Nodo datoExtraido;
+        struct NodoPila datoExtraido;
         desapilar(p,error,&datoExtraido);
         printf("Valor extraido: %d\n",datoExtraido.elemento.numero);
         *error = 0;
@@ -95,11 +95,11 @@ void inicioOperacion(int argc, char** argv){
 
     int iterador_operacion = 0;
     char operacion[30] = "25*32*+";
-    struct Nodo numeroPop1;
-    struct Nodo numeroPop2;
-    struct Nodo ResultadoOperacion;
+    struct NodoPila numeroPop1;
+    struct NodoPila numeroPop2;
+    struct NodoPila ResultadoOperacion;
     char numeroApilar;
-    struct Nodo numeroAplilar2;
+    struct NodoPila numeroAplilar2;
 
     do{
         switch (operacion[iterador_operacion])

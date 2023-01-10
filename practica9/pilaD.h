@@ -6,7 +6,7 @@
 /*
                 Tabla de errores
         Variable        Estado      Descripción
-        error           -1          NodoPila nulo
+        error           -1          Nodo nulo
         error           -2          Pila nula
         error           -3          Pila vacia
         error           0           Sin errores
@@ -16,21 +16,21 @@ typedef struct{
     int numero;
 }Elemento;
 
-struct NodoPila
+struct Nodo
 {
     Elemento elemento;// --> Puede ser otro tipo de dato, incluso otro TDA
-    struct NodoPila* NodoPilaAnterior;
+    struct Nodo* nodoAnterior;
 };
 
 typedef struct{
-    struct NodoPila* cima;
+    struct Nodo* cima;
     int cursor;
 }Pila;
 
 Pila* crearPila(int* error);
-void apilar(Pila *p, int* error, struct NodoPila datoUsuario);//push
+void apilar(Pila *p, int* error, struct Nodo datoUsuario);//push
 void consultarCima(Pila p, int* error);
-void desapilar(Pila *p, int* error,struct NodoPila *datoExtraido);
+void desapilar(Pila *p, int* error,struct Nodo *datoExtraido);
 bool isEmpty(Pila p, int* error);
 void vaciarPila(Pila *p, int* error);
 void destruirPila(Pila* p, int* error);
